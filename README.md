@@ -23,4 +23,10 @@
 
 
 
+the countdown decements by 1 second in its default state
+unless it is passed an ansser that is wrrong
+in which case it decrements by something larger
 
+onclick startgame button the game starts
+onclick startgame the countstarts
+onclick startgame is calls a whileloop functionup-4uuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuu
