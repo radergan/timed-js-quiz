@@ -1,5 +1,12 @@
 # Timed Coding Quiz
 
+
+## User Story 
+
+> As a coding boot camp student, I want to take a timed quiz 
+> on JavaScript fundamentals that stores high scores
+> So that I can gauge my progress compared to my peers
+
 ## Project Objectives
 
 * Given: A user is presented with a series of 3 questions
@@ -14,12 +21,6 @@
     the game ends.
 * If the game ends, I can save my initial and my score.
 
-
-## User Story 
-
-> As a coding boot camp student, I want to take a timed quiz 
-> on JavaScript fundamentals that stores high scores
-> So that I can gauge my progress compared to my peers
 
 
 
