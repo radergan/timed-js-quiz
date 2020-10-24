@@ -1,18 +1,15 @@
 
 
-
-$("#advance-the-quiz").on("click", function(){
-   event.preventDefault();
-   $(this).hide();
-   beginCountDown(60);
-})
   
+  
+var counter = 0;
 
-  for (var i = 0; i < questionAnswerPairs.length;i++){
-    var thisOne = questionAnswerPairs[i][1];
-    $("#counterproof").html(message);
-  }
 
+
+$(".answer-choice").on("click", function(){
+});
+
+  
 function beginCountDown(x){
   var secondsleft = x;
   var quizTimer = setInterval(function(){
@@ -25,3 +22,9 @@ function beginCountDown(x){
     secondsleft -= 1;
   }, 1000);
 };
+
+$("#advance-the-quiz").on("click", function(){
+  event.preventDefault();
+  //$(this).hide();
+  beginCountDown(60);
+})
