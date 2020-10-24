@@ -1,26 +1,27 @@
-function getRandomInt(max) {
-  //get a random number between 0 and [max]
-  return Math.floor(Math.random() * Math.floor(max));
-}
 
-v
+
 
 $("#advance-the-quiz").on("click", function(){
    event.preventDefault();
-   console.log('i work');
-   $(this).html("Button New Text");
+   $(this).hide();
+   beginCountDown(60);
 })
   
-  
-  
-   /*
+
   for (var i = 0; i < questionAnswerPairs.length;i++){
     var thisOne = questionAnswerPairs[i][1];
-    $("#counterproof").text(message);
+    $("#counterproof").html(message);
   }
-  */
-/*
-var poopie = setInterval(function(){ 
-  $("#countproof").text }, 
-  1000);
-  */
+
+function beginCountDown(x){
+  var secondsleft = x;
+  var quizTimer = setInterval(function(){
+    //console.log(secondsleft)
+    $("#tick-tock-box").html(secondsleft);
+    
+    if(secondsleft === 0){
+        clearInterval(quizTimer);
+    }
+    secondsleft -= 1;
+  }, 1000);
+};
