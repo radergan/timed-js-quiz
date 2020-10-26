@@ -31,6 +31,7 @@ var qanda = [
 
 var counter = 0;
 var correctAnswerNumber = -1;
+var secondsLeft = 59;
 
 function generateSomeStuff(){
     
@@ -71,18 +72,21 @@ $("#list-of-answers").on('click', '.answer-button', function(e) {
 
     if (counter != qanda.length){
         generateSomeStuff();
+    }else{
+        clearInterval(quizTimer);
+        generateResultScreen();
     }
 
 });
-/*
+
 function generateResultScreen(){
-    alert('time up!');
+    var quizResults = "<p>Time has expired. You finished the quiz with a score of " + secondsLeft + "</p>";
+    $("#quiz-body").html(quizResults);
 }
-*/
+
 $("#start-the-quiz").click(function(){
     $(this).hide();
-    var secondsLeft = 59;
-    var quizTimer = setInterval(function(){
+    quizTimer = setInterval(function(){
 
     $("#tick-tock-box").text(secondsLeft);
       
