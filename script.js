@@ -79,9 +79,24 @@ $("#list-of-answers").on('click', '.answer-button', function(e) {
 
 });
 
+function addNewScore (initials, score) {
+    var players = JSON.parse(localStorage.getItem('playerScores')) || [];
+    players.push({"initials": initials, "score": score});
+    localStorage.setItem('playerScores', JSON.stringify(players));
+}
+
 function generateResultScreen(){
-    var quizResults = "<p>Time has expired. You finished the quiz with a score of " + secondsLeft + "</p>";
+    $("#tick-tock-box").hide();
+
+    var initials = prompt("Enter your initials");
+    var score = secondsLeft;
+    addNewScore(initials, score);
+    console.log(localStorage.getItem('playerScores'));
+
+    var quizResults = "<div class='alert alert-warning'>Time has expired. You finished the quiz with a score of " + secondsLeft + ".</div>";
+
     $("#quiz-body").html(quizResults);
+    $("#quiz-body").append("<p id='try-again'><button class='btn btn-primary' onclick='location.reload();'>Try quiz again</button></p>")
 }
 
 $("#start-the-quiz").click(function(){
