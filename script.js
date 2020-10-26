@@ -61,19 +61,15 @@ $("#list-of-answers").on('click', '.answer-button', function(e) {
     e.stopImmediatePropagation();
     
     if (correctAnswerNumber == $(this).attr("data-qnum")){
-        console.log(correctAnswerNumber);
-        console.log("right");
         $("#right-or-wrong").html("<div class='alert alert-success'>Correct answer!</div>");
     }
     else{
-        console.log("wrong");
         $("#right-or-wrong").html("<div class='alert alert-danger'>Wrong answer!</div>");
     }
 
     if (counter != qanda.length){
         generateSomeStuff();
-    }else{
-        clearInterval(quizTimer);
+    }else{;
         generateResultScreen();
     }
 
@@ -81,22 +77,40 @@ $("#list-of-answers").on('click', '.answer-button', function(e) {
 
 function addNewScore (initials, score) {
     var players = JSON.parse(localStorage.getItem('playerScores')) || [];
-    players.push({"initials": initials, "score": score});
+    players.push({initials: initials, score: score});
     localStorage.setItem('playerScores', JSON.stringify(players));
+    return localStorage.getItem('playerScores');
+}
+
+function clearScores(){
+    localStorage.clear();
 }
 
 function generateResultScreen(){
     $("#tick-tock-box").hide();
+    $("#heres-the-choices").hide();
 
     var initials = prompt("Enter your initials");
     var score = secondsLeft;
-    addNewScore(initials, score);
-    console.log(localStorage.getItem('playerScores'));
+    var allScores = JSON.parse(addNewScore(initials, score));
 
     var quizResults = "<div class='alert alert-warning'>Time has expired. You finished the quiz with a score of " + secondsLeft + ".</div>";
 
-    $("#quiz-body").html(quizResults);
-    $("#quiz-body").append("<p id='try-again'><button class='btn btn-primary' onclick='location.reload();'>Try quiz again</button></p>")
+    $("#quiz-body").append(quizResults);
+
+    var scoreTable = "<table class='table'><thead><tr><td>Initials</td><td>Score</td></tr></thead>";
+
+    for(var i = 0; i < allScores.length; i++){
+        console.log(allScores[i]);
+        var tableRow = "<tr><td>" + allScores[i].initials + "</td><td>" + allScores[i].score + "</td></tr>";
+        var scoreTable = scoreTable + tableRow;
+    }
+    scoreTable = scoreTable + "</table>";
+    $("#quiz-body").append(scoreTable);
+    var endButtons = "<button class='btn btn-primary' onclick='location.reload();'>Try quiz again</button>";
+    endButtons = endButtons + "<button class='btn btn-primary' onclick='clearScores()'>Clear scores</button>";
+    $("#quiz-body").append("<p id='try-again'>" + endButtons + "</p>");
+
 }
 
 $("#start-the-quiz").click(function(){

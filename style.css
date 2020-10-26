@@ -12,3 +12,9 @@
 #try-again{
     margin-top:32px;
 }
+#try-again button{
+    margin:0px 12px 0px 12px;
+}
+thead{
+    font-weight:bold;
+}
