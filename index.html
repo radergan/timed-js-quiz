@@ -49,11 +49,15 @@
                 <li class="breadcrumb-item active" aria-current="page">Timed Javascript Quiz</li>
               </ol>
             </nav>
-            <h1 id="fuck" class="pb-3">Timed Javascript Quiz</h1>
-            <p id="countproof"></p>
+            <h1 class="pb-3">Timed Javascript Quiz</h1>
+            <p id="tick-tock-box"></p>
             <section>
               
-              <p><button id="advance-the-quiz" class="btn btn-primary">Start the Quiz</button></p>
+              <p><button id="advance-the-quiz" onclick="generateSomeStuff()" class="btn btn-primary">Start the Quiz</button></p>
+
+              <h3 id="question-title"></h3>
+              <ul id="list-of-answers">
+              </ul>
             </section>
           </main>
       </div>
