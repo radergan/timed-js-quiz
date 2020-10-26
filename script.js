@@ -70,14 +70,14 @@ $("#list-of-answers").on('click', '.answer-button', function(e) {
     }
 
 });
-
 /*
 function generateResultScreen(){
     alert('time up!');
 }
-
-function beginCountDown(x){
-    var secondsLeft = x;
+*/
+$("#start-the-quiz").click(function(){
+    $(this).hide();
+    var secondsLeft = 59;
     var quizTimer = setInterval(function(){
 
     $("#tick-tock-box").text(secondsLeft);
@@ -88,6 +88,5 @@ function beginCountDown(x){
     }
     secondsLeft -= 1;
     console.log(secondsLeft);
-    }, 100);
-};
-*/
+    }, 1000);
+});
