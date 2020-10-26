@@ -10,10 +10,12 @@ var qanda = [
     },
   
 	{	
-        question: "JavaScript can coerce data types from one type to another:",
+        question: "Which function will not raise a popup in the browser window?:",
         choices: [
-            {text: "True", correct:true},
-            {text: "False", correct:false}
+            {text: "prompt()", correct:false},
+            {text: "alert()", correct:false},
+            {text: "report()", correct:true},
+            {text: "confirm()", correct:false}
         ]
      },
 
@@ -28,7 +30,7 @@ var qanda = [
 ];
 
 var counter = 0;
-var correctAnswer = 0;
+var correctAnswerNumber = -1;
 
 function generateSomeStuff(){
     
@@ -36,21 +38,20 @@ function generateSomeStuff(){
     var currentQuestionTitle = qanda[counter].question;
     var listOfAnswers = qanda[counter].choices;
     var answerContainer = $("#list-of-answers");
-    var correctAnswerNumber;
 
     $("#question-title").text(currentQuestionTitle);
 
     for(var i = 0; i < listOfAnswers.length; i++){
         var thisAnswerText = listOfAnswers[i].text;
         var isThisCorrect = qanda[counter].choices[i].correct;
-        if(isThisCorrect){
+        if(isThisCorrect === true){
             correctAnswerNumber = i;
+            console.log(correctAnswerNumber);
         }
 
         answerContainer.append("<button class='answer-button btn btn-primary' data-qnum='" + i + "'>" + thisAnswerText + "</button>");
     }
     
-    correctAnswer = correctAnswerNumber;
     counter = counter + 1;
 }
 
@@ -58,14 +59,18 @@ function generateSomeStuff(){
 $("#list-of-answers").on('click', '.answer-button', function(e) {
     e.stopImmediatePropagation();
     
-    if (counter != qanda.length){
-        generateSomeStuff();
-    }
-    if (correctAnswer == $(this).attr("data-qnum")){
-        console.log('yes');
+    if (correctAnswerNumber == $(this).attr("data-qnum")){
+        console.log(correctAnswerNumber);
+        console.log("right");
+        $("#right-or-wrong").html("<div class='alert alert-success'>Correct answer!</div>");
     }
     else{
-        console.log('no')
+        console.log("wrong");
+        $("#right-or-wrong").html("<div class='alert alert-danger'>Wrong answer!</div>");
+    }
+
+    if (counter != qanda.length){
+        generateSomeStuff();
     }
 
 });
@@ -86,6 +91,5 @@ $("#start-the-quiz").click(function(){
         generateResultScreen();
     }
     secondsLeft -= 1;
-    console.log(secondsLeft);
     }, 1000);
 });
