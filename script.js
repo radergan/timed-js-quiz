@@ -10,11 +10,10 @@ var qanda = [
     },
   
 	{	
-        question: "JavaScript is:",
+        question: "JavaScript can coerce data types from one type to another:",
         choices: [
-            {text: "Single-threaded", correct:true},
-            {text: "Multi-threaded", correct:false},
-            {text: "Neither single nor multi-threaded", correct:false}
+            {text: "True", correct:true},
+            {text: "False", correct:false}
         ]
      },
 
@@ -48,7 +47,7 @@ function generateSomeStuff(){
             correctAnswerNumber = i;
         }
 
-        answerContainer.append("<button class='answer-button' data-qnum='" + i + "'>" + thisAnswerText + "</button>");
+        answerContainer.append("<button class='answer-button btn btn-primary' data-qnum='" + i + "'>" + thisAnswerText + "</button>");
     }
     
     correctAnswer = correctAnswerNumber;
