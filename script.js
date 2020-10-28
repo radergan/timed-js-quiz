@@ -27,6 +27,15 @@ var qanda = [
             {text: "Not a number", correct:true}
         ]
     },
+	{	
+  	    question: "What is the correct attribute for referencing an external script like <script ____='foo.js'>?",
+		choices: [
+    	    {text: "src", correct:true},
+            {text: "doc", correct:false},
+            {text: "href", correct:false},
+			{text: "target", correct:false}
+        ]
+    }
 ];
 
 var counter = 0;
@@ -84,37 +93,41 @@ function addNewScore (initials, score) {
 
 function clearScores(){
     localStorage.clear();
+	$("#table-of-scores").html("");
 }
-
-function generateResultScreen(){
-    $("#tick-tock-box").hide();
-    $("#heres-the-choices").hide();
-
-    var initials = prompt("Enter your initials");
-    var score = secondsLeft;
-    var allScores = JSON.parse(addNewScore(initials, score));
-
-    var quizResults = "<div class='alert alert-warning'>Time has expired. You finished the quiz with a score of " + secondsLeft + ".</div>";
-
-    $("#quiz-body").append(quizResults);
-
-    var scoreTable = "<table class='table'><thead><tr><td>Initials</td><td>Score</td></tr></thead>";
+function printScores(x){
+	var allScores = x;
+	var scoreTable = "<table class='table' id='table-of-scores'><thead><tr><td>Initials</td><td>Score</td></tr></thead>";
 
     for(var i = 0; i < allScores.length; i++){
-        console.log(allScores[i]);
         var tableRow = "<tr><td>" + allScores[i].initials + "</td><td>" + allScores[i].score + "</td></tr>";
         var scoreTable = scoreTable + tableRow;
     }
     scoreTable = scoreTable + "</table>";
     $("#quiz-body").append(scoreTable);
+}
+function generateResultScreen(){
+    $("#tick-tock-box").hide();
+    $("#heres-the-choices").hide();
+	var quizResults = "<div class='alert alert-warning'>Time has expired. You finished the quiz with a score of " + secondsLeft + ".</div>";
+	$("#quiz-body").append(quizResults);
+	
+    var initials = prompt("Enter your initials");
+    var score = secondsLeft;
+    var allScores = JSON.parse(addNewScore(initials, score));
+
+    printScores(allScores);
+	
     var endButtons = "<button class='btn btn-primary' onclick='location.reload();'>Try quiz again</button>";
+	
     endButtons = endButtons + "<button class='btn btn-primary' onclick='clearScores()'>Clear scores</button>";
     $("#quiz-body").append("<p id='try-again'>" + endButtons + "</p>");
-
 }
+
 
 $("#start-the-quiz").click(function(){
     $(this).hide();
+	$("#initial-instructions").hide();
     quizTimer = setInterval(function(){
 
     $("#tick-tock-box").text(secondsLeft);

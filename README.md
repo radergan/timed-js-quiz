@@ -16,6 +16,6 @@ These are some notes/concerns on the current functionality.
 
 * No penalty is incurred for missing a question; this was in the original acceptance criteria but is lacking from the program's current
 logic.
-* The clear scores button clears scores in local storage, but does not immediately reflect on the page; to the user, it appears the button
-has no functionality, even though it is silently flushing their local saved scores.
+* ~~The clear scores button clears scores in local storage, but does not immediately reflect on the page; to the user, it appears the button
+has no functionality, even though it is silently flushing their local saved scores~~ Fixed 2020-10-28.
 
