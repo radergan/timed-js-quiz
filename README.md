@@ -1,6 +1,6 @@
 # Timed Javascript Quiz
 
-This small application should present the user with a quiz about Javascript. It stored scores locally using localstorage. The score
+This small application should present the user with a quiz about Javascript. It stores scores locally using localstorage. The score
 is derived from the amount of time it takes the user to complete the quiz.
 
 ## User Story
