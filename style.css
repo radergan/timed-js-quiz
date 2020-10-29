@@ -15,6 +15,13 @@
 #try-again button{
     margin:0px 12px 0px 12px;
 }
+#penalty-temp{
+color:red;
+font-size: 0.33em;
+margin: 12px 0px 12px 0px;
+font-family:'Courier New',monospace;
+display:block;
+}
 thead{
     font-weight:bold;
 }
