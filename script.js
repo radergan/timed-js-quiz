@@ -44,7 +44,6 @@ var counter = 0;
 var correctAnswerNumber = -1;
 var timeCounter = 59;
 var penaltyWhenWrong = 10; //minus 10 pts
-$("#penalty-temp").html("Wrong answer:  - " + penaltyWhenWrong + " seconds.");
 
 $("#start-the-quiz").click(function(){
     $(this).hide();
@@ -59,6 +58,7 @@ function setTime(x){
 	$("#tick-tock-box").text(timeCounter);
       
 	if(timeCounter === 0){
+		clearInterval(timeCounter);
 		generateResultScreen();
 	}
 	timeCounter -= 1;
@@ -69,12 +69,11 @@ $("#list-of-answers").on('click', '.answer-button', function(e) {
     e.stopImmediatePropagation();
     
     if (correctAnswerNumber == $(this).attr("data-qnum")){
-        $("#right-or-wrong").html("<div class='alert alert-success'>Correct answer!</div>");
+        $("#right-or-wrong").html("<div id='answer-result' style=`display:none;' class='alert alert-success'>Correct answer!</div>");
     }
     else{
-        $("#right-or-wrong").html("<div class='alert alert-danger'>Wrong answer!</div>");
+        $("#right-or-wrong").html("<div id='answer-result' style=`display:none;' class='alert alert-danger'>Wrong answer! Penalty: -" + penaltyWhenWrong + " seconds.</div>");
 		timeCounter = timeCounter - penaltyWhenWrong;
-		displayPenalty();
     }
 	
     if (counter != qanda.length){
@@ -83,13 +82,9 @@ $("#list-of-answers").on('click', '.answer-button', function(e) {
     }else{;
         generateResultScreen();
     }
+	$("#answer-result").show();
+	$("#answer-result").fadeOut(2500);
 });
-
-function displayPenalty (){
-	var penaltyBox = $("#penalty-temp");
-	penaltyBox.show();
-	penaltyBox.fadeOut(3000);
-}
 
 function questionsAndAnswers(){
     $("#list-of-answers").html("");
