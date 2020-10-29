@@ -1,5 +1,6 @@
 # Timed Javascript Quiz
 
+
 This small application should present the user with a quiz about Javascript. It stores scores locally using localstorage. The score
 is derived from the amount of time it takes the user to complete the quiz.
 
@@ -14,8 +15,8 @@ These are some notes/concerns on the current functionality.
 
 ### Known Bugs
 
-* No penalty is incurred for missing a question; this was in the original acceptance criteria but is lacking from the program's current
-logic.
+* ~~No penalty is incurred for missing a question; this was in the original acceptance criteria but is lacking from the program's current
+logic~~ Fixed 2020-10-27
 * ~~The clear scores button clears scores in local storage, but does not immediately reflect on the page; to the user, it appears the button
-has no functionality, even though it is silently flushing their local saved scores~~ Fixed 2020-10-28.
+has no functionality, even though it is silently flushing their local saved scores~~. Fixed
 
